@@ -7,7 +7,7 @@ module.exports.validateRegisterInput = (
     }
 
     if (email.trim() === "") {
-        email.username = 'Email Must Not be Empty';
+        errors.email = 'Email Must Not be Empty';
     } else {
         const regEx = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
         if (!email.match(regEx)) {
