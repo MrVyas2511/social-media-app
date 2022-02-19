@@ -4,8 +4,22 @@
     font-size: 2rem;
     margin-top: 10px;
 }
+.warning{
+    display: block !important;
+    text-align: center;
+}
 
 .form-container{
     width: 400px;
     margin: auto;
+}
+
+#root{
+    background-color: aquamarine;
+    min-height: 100vh;
+}
+
+.title{
+    text-align: center;
+    width: 100%;
 }

@@ -15,6 +15,20 @@ function generateToken(user) {
 }
 
 module.exports = {
+    Query: {
+        async getUser(_, { userId }) {
+            try {
+                const user = await User.findById(userId);
+                if (user) {
+                    return user;
+                } else {
+                    throw new Error('User not Found');
+                }
+            } catch (err) {
+                throw new Error(err);
+            }
+        }
+    },
     Mutation: {
         async login(_, { username, password }) {
             const { errors, valid } = validateLoginInput(username, password);
@@ -44,7 +58,7 @@ module.exports = {
             };
         },
         async register(_, {
-            registerInput: { username, email, password, confirmPassword }
+            registerInput: { username, email, password, confirmPassword}
         }) {
 
             //TODO Validate user data
@@ -83,6 +97,23 @@ module.exports = {
                 id: res._id,
                 token
             };
+        },
+        async profileUpdate(_, { profileInput: { id, username, email, about, gender } }) {
+            
+            const res = await User.findOneAndUpdate({ _id: id }, { $set: { username, email, about, gender } },null, function (err, res) {
+                if (err) {
+                    console.log(err)
+                }
+                else {
+                    console.log("Updated User : ", res);
+                }
+            }).clone()
+            const token = generateToken(res);
+            return {
+                ...res._doc,
+                id: res._id,
+                token
+            }
         }
     }
 }

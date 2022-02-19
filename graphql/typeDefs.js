@@ -6,6 +6,7 @@ module.exports = gql`
         body:String!
         createdAt:String!
         username:String!
+        user:String!
         comments: [Comment]!
         likes:[Like]!
         likeCount:Int!
@@ -28,6 +29,8 @@ module.exports = gql`
         token:String! 
         username:String! 
         createdAt: String!
+        about: String
+        gender:String
     }
     input RegisterInput{
         username:String!
@@ -35,16 +38,25 @@ module.exports = gql`
         confirmPassword:String!
         email:String!
     }
+    input ProfileInput{
+        id:ID!
+        username:String!
+        email:String!
+        about: String!
+        gender:String!  
+    }
     type Query{
         getPosts:[Post]!
         getPost(postId: ID!):Post
+        getUser(userId:ID!):User
     }
     type Mutation{
+        profileUpdate(profileInput:ProfileInput):User!
         register(registerInput:RegisterInput):User!
         login(username:String!,password:String!):User!
         createPost(body:String!):Post!
         deletePost(postId:ID!):String!
-        createComment(postId:String!,body:String!):Post!
+        createComment(postId:ID!,body:String!):Post!
         deleteComment(postId:ID!,commentId:ID!):Post!
         likePost(postId:ID!):Post!
     }
