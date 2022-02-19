@@ -6,20 +6,13 @@ import moment from "moment";
 import LikeButton from './LikeButton'
 import { AuthContext } from '../context/auth'
 import DeleteButton from './DeleteButton'
-import { useQuery } from "@apollo/client";
-import { FETCH_USER_QUERY } from "../util/graphql";
-
-
+ 
 function PostCard({
   post: { body, createdAt, id, username, likeCount, commentCount, likes },userId
 }) {
 
   const { user } =useContext(AuthContext);
   
-  // const { loading, data } = useQuery(FETCH_USER_QUERY);
-  
-  //   console.log(data);
-
   return (
     <Card fluid>
       <Card.Content>

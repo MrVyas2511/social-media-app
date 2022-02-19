@@ -1,19 +1,16 @@
-import React, { useContext } from 'react'
-import { Card, Icon } from 'semantic-ui-react'
+import React   from 'react'
 import { useParams } from 'react-router-dom';
-import { FETCH_USER_QUERY,FETCH_POST_QUERY } from '../util/graphql';
+import { FETCH_POST_QUERY } from '../util/graphql';
 import { useQuery } from '@apollo/client';
 import { Grid,Transition } from "semantic-ui-react";
 import UserCard from '../components/UserProfile/UserCard';
 import PostCard from '../components/PostCard';
-import { AuthContext } from '../context/auth';
-
+ 
 function UserProfile() {
 
     let params = useParams();
     const userId = params.userId;
-    const {user} = useContext(AuthContext)
-    console.log(userId);
+     console.log(userId);
     const {loading, data } = useQuery(FETCH_POST_QUERY);
 
     console.log(data);
@@ -21,7 +18,7 @@ function UserProfile() {
 
     return (
         <>
-            <Grid columns={2}>
+            <Grid stackable columns={2}>
                 <Grid.Row>
                    <h2 className='title'> User Profile</h2> 
                 </Grid.Row>
@@ -36,9 +33,9 @@ function UserProfile() {
         ) : (
             <Transition.Group>
                {data.getPosts &&
-          data.getPosts.map((post) => ( post.user==userId &&(
+          data.getPosts.map((post) => ( post.user===userId &&(
             <Grid.Column key={post.id} style={{ marginBottom: 20 }}>
-              <PostCard post={post} />
+              <PostCard post={post} userId={userId} />
               </Grid.Column>
           )
           ))}

@@ -1,6 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { ValuesOfCorrectTypeRule } from 'graphql'
-import gql from 'graphql-tag';
+ import gql from 'graphql-tag';
 import React from 'react'
 import { Form,Button } from 'semantic-ui-react'
 

@@ -1,14 +1,9 @@
 import { useMutation } from '@apollo/client'
-import React, { Component, useState } from 'react'
+import React  from 'react'
 import { Form } from 'semantic-ui-react'
 import { useForm } from '../util/hooks'
 import gql from 'graphql-tag'
-const options = [
-  { key: 'm', text: 'Male', value: 'male' },
-  { key: 'f', text: 'Female', value: 'female' },
-  { key: 'o', text: 'Other', value: 'other' },
-]
-
+ 
 export default function FormExampleSubcomponentControl({ user: {id, username, email, gender, about } ,setEdit})  {
  
         
@@ -41,6 +36,7 @@ export default function FormExampleSubcomponentControl({ user: {id, username, em
           name="username"
           type="text"
           value={values.username}
+          error={error?true:false}
            onChange={onChange}
         />
         <Form.Input
@@ -49,6 +45,7 @@ export default function FormExampleSubcomponentControl({ user: {id, username, em
           name="email"
           type="email"
           value={values.email}
+          error={error?true:false}
            onChange={onChange}
         />
       
@@ -57,14 +54,16 @@ export default function FormExampleSubcomponentControl({ user: {id, username, em
             name="gender"
             type='text'
             placeholder='Gender'
-            value={values.gender}        
+          value={values.gender} 
+          error={error?true:false}
             onChange={onChange}
           />
      
             <Form.TextArea label='About'
                 name="about"
                 value={values.about}
-                onChange={onChange}
+              onChange={onChange}
+              error={error?true:false}
                 placeholder='Tell us more about you...' />
          <Form.Button type='submit'>Submit</Form.Button>
       </Form>
@@ -98,15 +97,4 @@ const CREATE_PROFILE_MUTATTION = gql`
   }
 `;
 
-const FETCH_USER_QUERY = gql`
-  query($userId:ID!){
-    getUser(userId:$userId){
-          id
-          username
-          email
-          gender
-          email
-          about
-    }
-  }
-`;
+ 

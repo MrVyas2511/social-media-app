@@ -4,8 +4,7 @@ import { useContext } from 'react'
 import moment from 'moment';
 import ProfileForm from '../components/ProfileForm'
 import { Button, Grid } from 'semantic-ui-react';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/client';
+ import { useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { FETCH_USER_QUERY } from '../util/graphql';
 
@@ -34,15 +33,15 @@ export default function Profile() {
  
   return (
     <>
-      <Grid columns={2}>
+      <Grid stackable columns={2}>
         <Grid.Row>
           <Grid.Column>
-        <div>
-      <h2>Username : {user.username}</h2>
-      <h2>About: {data.getUser.about}</h2>
-      <h2>Email : {data.getUser.email}</h2>
-      <h2>Gender:{data.getUser.gender}</h2>
-      <h2>CreatedAt : {moment(user.createdAt).format()}</h2> 
+            <div style={{ margin: '50px' }}>
+      <h3>Username : {user.username}</h3>
+      <h3>About: {data.getUser.about}</h3>
+      <h3>Email : {data.getUser.email}</h3>
+      <h3>Gender:{data.getUser.gender}</h3>
+      <h3>CreatedAt : {moment(user.createdAt).format()}</h3> 
            </div>
         </Grid.Column>
       

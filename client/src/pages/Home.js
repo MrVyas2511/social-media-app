@@ -16,7 +16,7 @@ export default function Home() {
   if (loading) return "Loading...";
 
   return (
-    <Grid columns={3}>
+    <Grid stackable columns={3}>
       {!user && (<Grid.Row className="warning">
         <h4>Please do login to create your post!!. </h4>
       </Grid.Row>)}
